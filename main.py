@@ -14,9 +14,7 @@ def noname():
     files = [os.path.join(sys.path[0], filepath, f) for f in os.listdir( os.path.join(sys.path[0], filepath))]
     for fp in files:
         flight = igcfile(fp)
-        dates = flight.getflighttimes()
-        times = [t.strftime("%H:%M") for t in dates[:-1]]
-        newname = f"{dates[0].strftime('%d.%m.%Y')}_{flight.getaircraft()}_{times[0]}-{times[1]}"
+        newname = flight.rename()
 
         with open(fp, "r") as f:
             content = f.read()
@@ -32,11 +30,6 @@ def main():
 
     if os.path.exists("tmp.json"): os.remove("tmp.json")
 
-
-
-
-
-    
 
 if __name__ == "__main__":
     main()

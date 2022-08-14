@@ -69,3 +69,7 @@ class igcfile:
         else: glider = header["glider_registration"]
         return glider
 
+    def rename(self, pilot = ""):
+        dates = self.getflighttimes()
+        times = [t.strftime("%H:%M") for t in dates[:-1]]
+        return f"{pilot}{dates[0].strftime('%d.%m.%Y')}_{self.getaircraft()}_{times[0]}-{times[1]}"
